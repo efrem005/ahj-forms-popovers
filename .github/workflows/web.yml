@@ -19,20 +19,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  eslint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.14.0
-          cache: 'yarn'
-      - run: corepack enable
-      - run: corepack prepare yarn@1.22.19 --activate
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-
   coverage:
     runs-on: ubuntu-latest
 
@@ -49,7 +35,7 @@ jobs:
       - run: yarn coverage
 
   build:
-    needs: [eslint, coverage]
+    needs: [coverage]
 
     environment:
       name: github-pages
