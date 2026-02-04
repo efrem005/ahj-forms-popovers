@@ -28,6 +28,8 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'yarn'
+      - run: corepack enable
+      - run: corepack prepare yarn@1.22.19 --activate
       - run: yarn install --frozen-lockfile
       - run: yarn lint
 
@@ -40,7 +42,10 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'yarn'
+      - run: corepack enable
+      - run: corepack prepare yarn@1.22.19 --activate
       - run: yarn install --frozen-lockfile
+      - run: yarn lint
       - run: yarn coverage
 
   build:
@@ -58,6 +63,8 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'yarn'
+      - run: corepack enable
+      - run: corepack prepare yarn@1.22.19 --activate
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - name: Setup Pages
